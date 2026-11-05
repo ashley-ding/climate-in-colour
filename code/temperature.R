@@ -31,7 +31,8 @@ data_df <- read.csv(data_path, skip = 1, na.strings = "***")
 data_df <- data_df %>% select(year = Year, t_diff = J.D) %>%
                        mutate(year = as.integer(year),
                               t_diff = as.numeric(t_diff)) %>%
-                       arrange(year)
+                       drop_na() %>%
+                       arrange(year) 
 
 # Check the available data range
 print(range(data_df$year, na.rm = TRUE))
@@ -91,8 +92,8 @@ ggsave(
   plot = plot,
   width = 6,
   height = 4,
-  dpi = 300,
-  bg = "transparent"
+  # dpi = 300,
+  # bg = "transparent"
 )
 
 
@@ -284,6 +285,6 @@ ggsave(
   plot = paris_plot,
   width = 6,
   height = 4,
-  dpi = 300,
-  bg = "transparent"
+  # dpi = 300,
+  # bg = "transparent"
 )
