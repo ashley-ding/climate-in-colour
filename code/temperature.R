@@ -8,7 +8,6 @@ library(tidyverse)
 library(dplyr)
 
 # 2. Define file paths
-
 script_path <- rstudioapi::getActiveDocumentContext()$path
 
 code_folder <- dirname(script_path)
@@ -23,7 +22,6 @@ figures_folder <- file.path(project_folder, "figures")
 
 
 # 3. Read and prepare data
-
 data_df <- read.csv(data_path, skip = 1, na.strings = "***")
 
 # Alternative: read directly from NASA
@@ -39,7 +37,6 @@ data_df <- data_df %>% select(year = Year, t_diff = J.D) %>%
 print(range(data_df$year, na.rm = TRUE))
 
 # 4. Chart 1: Global Temperature Index (1880–present)
-
 plot <- data_df %>% ggplot(aes(x=year,
                                y=t_diff)) +
                     geom_line(aes(color="1"), 
