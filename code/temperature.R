@@ -84,7 +84,10 @@ print(plot)
 
 
 ggsave(
-  filename = temperature_figure_path,
+  filename = file.path(
+    figures_folder,
+    "temperature_line.png"
+  ),
   plot = plot,
   width = 6,
   height = 4,
