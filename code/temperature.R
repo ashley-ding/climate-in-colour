@@ -40,47 +40,47 @@ data_df <- data_df %>% select(year = Year, t_diff = J.D) %>%
 print(range(data_df$year, na.rm = TRUE))
 
 # 4. Chart 1: Global Temperature Index (1880–present)
-plot <- data_df %>% ggplot(aes(x=year,
-                               y=t_diff)) +
+plot <- data_df %>% ggplot(aes(x = year,
+                               y = t_diff)) +
                     geom_line(aes(color="1"), 
-                              size=0.5,
-                              show.legend=FALSE) +
-                    geom_point(fill="white", 
-                               aes(color="1"),
-                               shape=21,
-                               show.legend=TRUE) +
-                    geom_smooth(se=FALSE, # hide the shaded confidence interval
-                                aes(color="2"),
-                                size=1,
-                                span=0.15,
-                                show.legend=FALSE) + # control how much smoothing is applied
-                    scale_x_continuous(breaks=seq(1880,2026,20), expand=c(0,0)) +
-                    scale_y_continuous(limits=c(-0.5, 1.5), expand=c(0,0)) +
-                    scale_color_manual(name=NULL,
-                                       breaks=c(1,2),
-                                       values=c("gray", "black"),
-                                       labels=c("Annual mean", "Lowess smoothing"),
-                                       guide=guide_legend(override.aes=list(shape=15))) +
-                    labs(x="YEAR",
-                         y="Temperature anomaly (C)",
-                         title="GLOBAL LAND-OCEAN TEMPERATURE INDEX", 
+                              size = 0.5,
+                              show.legend = FALSE) +
+                    geom_point(fill = "white", 
+                               aes(color = "1"),
+                               shape = 21,
+                               show.legend = TRUE) +
+                    geom_smooth(se = FALSE, # hide the shaded confidence interval
+                                aes(color = "2"),
+                                size = 1,
+                                span = 0.15,
+                                show.legend = FALSE) + # control how much smoothing is applied
+                    scale_x_continuous(breaks = seq(1880,2026,20), expand = c(0,0)) +
+                    scale_y_continuous(limits = c(-0.5, 1.5), expand = c(0,0)) +
+                    scale_color_manual(name = NULL,
+                                       breaks = c(1,2),
+                                       values = c("gray", "black"),
+                                       labels = c("Annual mean", "Lowess smoothing"),
+                                       guide = guide_legend(override.aes=list(shape=15))) +
+                    labs(x = "YEAR",
+                         y = "Temperature anomaly (C)",
+                         title = "GLOBAL LAND-OCEAN TEMPERATURE INDEX", 
                          subtitle = paste0(
                            "Data source: NASA's Goddard Institute for Space Studies (GISS).\n",
                            "Credit: NASA/GISS"
                          )
                     ) + 
                     theme_light() +
-                    theme(axis.ticks=element_blank(),
-                          plot.title.position="plot",
-                          plot.title=element_text(margin=margin(b=10),
+                    theme(axis.ticks = element_blank(),
+                          plot.title.position = "plot",
+                          plot.title = element_text(margin = margin(b=10),
                                                   # color="red",
-                                                  face="bold"),
-                          plot.subtitle=element_text(size=8,
-                                                     margin=margin(b=10)),
-                          legend.position=c(0.15, 0.9),
-                          legend.title=element_text(size=0),
-                          legend.key.height=unit(10, "pt"),
-                          legend.margin=margin(0,0,0,0)
+                                                  face = "bold"),
+                          plot.subtitle = element_text(size = 8,
+                                                       margin = margin(b = 10)),
+                          legend.position = c(0.15, 0.9),
+                          legend.title = element_text(size = 0),
+                          legend.key.height = unit(10, "pt"),
+                          legend.margin = margin(0,0,0,0)
                     )
 
 print(plot)
@@ -92,7 +92,7 @@ ggsave(
     "temperature_line.png"
   ),
   plot = plot,
-  width = 6,
+  width = 8,
   height = 4,
   # dpi = 300,
   # bg = "transparent"
@@ -285,7 +285,7 @@ ggsave(
     "road_to_paris.png"
   ),
   plot = paris_plot,
-  width = 6,
+  width = 8,
   height = 4,
   # dpi = 300,
   # bg = "transparent"

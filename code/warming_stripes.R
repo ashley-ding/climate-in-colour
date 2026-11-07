@@ -2,6 +2,7 @@
 # GLOBAL TEMPERATURE INDEX (WARMING STRIPES)
 # Data source: NASA GISS GISTEMP
 # ============================================================
+# 0. Clean environment
 rm(list=ls())
 
 # 1. Load libraries
@@ -37,10 +38,50 @@ data_df <- data_df %>% select(year = Year, t_diff = J.D) %>%
                        drop_na()
 
 
+# 4. Chart 1: Warming stripes
+plot <- data_df %>% ggplot(aes(x = year,
+                               y = 1,
+                               fill = t_diff)) +
+                    geom_tile(show.legend = FALSE) + 
+                    scale_fill_stepsn(colors = c("#08306B",
+                                                 "white",
+                                                 "#67000D"),
+                                      values = rescale(c(min(data_df$t_diff), 0, 
+                                                       max(data_df$t_diff))),
+                                      n.breaks = 12) +
+                    coord_cartesian(expand = FALSE) +
+                    scale_x_continuous(breaks = seq(1890, 2020, 30)) +
+                    labs(title = glue("Global temperature change {min(data_df$year)}-{max(data_df$year)}")) +
+                    theme_void() + 
+                    theme(axis.text.x = element_text(color = "white",
+                                                     margin = margin(t = 5,
+                                                                     b = 10,
+                                                                     unit = "pt")),
+                          plot.title = element_text(color = "white",
+                                                    margin = margin(t = 5,
+                                                                    b = 10, 
+                                                                    unit = "pt"),
+                                                    hjust = 0.05),
+                          plot.background = element_rect(fill = "black")
+                          
+                          )
 
 
 
 
+print(plot)
+
+ggsave(
+  filename = file.path(
+    figures_folder,
+    "warming_stripes.png"
+  ),
+  plot = plot,
+  width = 8,
+  height = 4,
+  # dpi = 300,
+  # bg = "transparent"
+)
 
 
 
