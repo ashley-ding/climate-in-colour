@@ -43,7 +43,7 @@ data_df <- data_df %>% mutate(year = as.integer(substr(period, 1, 4))) %>%
 # Automatically identify the first and last years
 annotation <- data_df %>% slice(1, n()) %>%
                           mutate(t_diff = 0,
-                                 x = year + c(-2, 2))
+                                 x = year + c(-10, 10))
 
 # Check the available data range
 print(range(data_df$year, na.rm = TRUE))
@@ -55,10 +55,10 @@ plot <- data_df %>% ggplot(aes(x = year,
                                fill = t_diff)) +
                     geom_col(show.legend = FALSE) +
                     
-                    # Zero reference line
-                    geom_hline(yintercept = 0,
-                               colour = "white",
-                               linewidth = 0.4) +
+                    # # Zero reference line
+                    # geom_hline(yintercept = 0,
+                    #            colour = "white",
+                    #            linewidth = 0.4) +
                     
                     # Automatically label first and last years
                     geom_text(data = annotation, 
