@@ -2,6 +2,8 @@
 # GLOBAL TEMPERATURE INDEX & SUSTAINABILITY MILESTONES
 # Data source: NASA GISS GISTEMP
 # ============================================================
+# 0. Clean environment
+rm(list=ls())
 
 # 1. Load libraries
 library(tidyverse)
